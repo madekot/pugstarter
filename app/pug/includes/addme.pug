@@ -1,1 +1,24 @@
-div I'm from subfolder
+include variables.pug
+
+- var arr = variables.testList; // Точка входа данных: @param array
+
+- var isEmptyArr = arr === undefined;
+- arr = isEmptyArr ? false: arr;
+
+-
+  var defoultValues = { // Статические параметры по умолчанию
+    count: arr.length || 4,
+    title: 'not title',
+    number: 'not number'
+  }
+
+ul
+  - for (var i = 0; i < defoultValues.count; i++)
+    - var isItemUndefined = arr[i] === undefined
+    - var title = isItemUndefined ? defoultValues.title : arr[i].name;
+    - var number = isItemUndefined ? defoultValues.number : arr[i].number;
+    li.test
+      p #{title}
+      p #{number}
+
+
